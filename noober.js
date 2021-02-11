@@ -13,6 +13,8 @@ function levelOfService(ride) {
 }
 
 function renderRides(ridesArray) {
+
+
   for (let i = 0; i < ridesArray.length; i++) {
     let ride = ridesArray[i]
 
@@ -68,6 +70,158 @@ function renderRides(ridesArray) {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-  // YOUR CODE
+  
+  let allrides = document.querySelector('#all-filter')
+  allrides.addEventListener('click', async function (event){
+  event.preventDefault()
+
+  //clearing out div
+document.querySelector(`.rides`).innerHTML = ' '
+
+let response = await fetch('https://kiei451.com/api/rides.json')
+let json = await response.json()
+
+
+let ridesdiv = document.querySelector(`.rides`)
+let rides = renderRides(json)
+ridesdiv.insertAdjacentHTML('beforeend',`${rides}`)
+
 })
+///////////////////////////////////////////////////////////////////////////////////////////
+//NOOBER POOL CODE
+  let poolRides = document.querySelector('#noober-pool-filter')
+
+  poolRides.addEventListener('click', async function (event){
+  event.preventDefault()
+
+//clearing out div
+document.querySelector(`.rides`).innerHTML = ' '
+
+//getting package
+let response = await fetch('https://kiei451.com/api/rides.json')
+let json = await response.json()
+
+//creating pool array
+poolArray = [];
+for (let i=0; i<json.length; i++){
+serviceLevel= levelOfService(json[i]);
+    if(serviceLevel=="Noober Pool"){
+      poolArray.push(json[i])
+    }
+}
+
+
+let ridesdiv = document.querySelector(`.rides`)
+let rides = renderRides(poolArray)
+
+ridesdiv.insertAdjacentHTML('beforeend',`${rides}`)
+
+
+})
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//NOOBER PURPLE CODE
+let purpleRides = document.querySelector('#noober-purple-filter')
+
+purpleRides.addEventListener('click', async function (event){
+event.preventDefault()
+
+//clearing out div
+document.querySelector(`.rides`).innerHTML = ' '
+
+//getting package
+let response = await fetch('https://kiei451.com/api/rides.json')
+let json = await response.json()
+
+//creating purple array
+purpleArray = [];
+for (let i=0; i<json.length; i++){
+serviceLevel= levelOfService(json[i]);
+  if(serviceLevel=="Noober Purple"){
+    purpleArray.push(json[i])
+  }
+}
+
+
+let ridesdiv = document.querySelector(`.rides`)
+let rides = renderRides(purpleArray)
+
+ridesdiv.insertAdjacentHTML('beforeend',`${rides}`)
+
+})
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//NOOBER XL CODE
+let xlRides = document.querySelector('#noober-xl-filter')
+
+xlRides.addEventListener('click', async function (event){
+event.preventDefault()
+
+//clearing out div
+document.querySelector(`.rides`).innerHTML = ' '
+
+//getting package
+let response = await fetch('https://kiei451.com/api/rides.json')
+let json = await response.json()
+
+//creating xl array
+xlArray = [];
+for (let i=0; i<json.length; i++){
+serviceLevel= levelOfService(json[i]);
+  if(serviceLevel=="Noober XL"){
+    xlArray.push(json[i])
+  }
+}
+
+
+let ridesdiv = document.querySelector(`.rides`)
+let rides = renderRides(xlArray)
+
+ridesdiv.insertAdjacentHTML('beforeend',`${rides}`)
+
+})
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//NOOBER X CODE
+let xRides = document.querySelector('#noober-x-filter')
+
+xRides.addEventListener('click', async function (event){
+event.preventDefault()
+
+//clearing out div
+document.querySelector(`.rides`).innerHTML = ' '
+
+//getting package
+let response = await fetch('https://kiei451.com/api/rides.json')
+let json = await response.json()
+
+//creating x array
+xArray = [];
+for (let i=0; i<json.length; i++){
+serviceLevel= levelOfService(json[i]);
+  if(serviceLevel=="Noober X"){
+    xArray.push(json[i])
+  }
+}
+
+
+let ridesdiv = document.querySelector(`.rides`)
+let rides = renderRides(xArray)
+
+ridesdiv.insertAdjacentHTML('beforeend',`${rides}`)
+
+})
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+})
+
+
+
+
+
 
